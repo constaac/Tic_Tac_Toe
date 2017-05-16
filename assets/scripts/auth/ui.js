@@ -18,7 +18,10 @@ const signInSuccess = (data) => {
   $('#loginModal').modal('toggle')
   $('.hidebutton').css('display', 'none')
   $('.start-display-none').css('display', 'inline')
-  $('.nav-account').text('Signed in as ' + store.userID)
+  $('.start-display-none-logout').css('display', 'inline')
+  $('.start-display-none-password').css('display', 'inline')
+  $('.login-status').text('Signed in as ' + store.userEmail)
+  console.log(store.userID)
 }
 
 const signInFailure = (error) => {
@@ -27,9 +30,55 @@ const signInFailure = (error) => {
   $('.signinstatus').css('color', 'red')
 }
 
+const logoutSuccess = (data) => {
+  console.log(data)
+  console.log('Logged that bitch out!')
+  $('.login-status').text('Sign in to play!')
+  $('.hidebutton').css('display', 'inline')
+  $('.start-display-none-logout').css('display', 'none')
+  $('.start-display-none-password').css('display', 'none')
+}
+
+const logoutFailure = (error) => {
+  console.error(error)
+  console.log("Didn't log that bitch out...")
+  $('.login-status').text('Error logging out!')
+}
+
+const changePasswordSuccess = (data) => {
+  console.log(data)
+  $('.passwordstatus').html('Password Change Successful!')
+  $('.passwordstatus').css('color', 'green')
+}
+
+const changePasswordFailure = (error) => {
+  console.error(error)
+  $('.passwordstatus').html('Password Change Unsuccessful...')
+  $('.passwordstatus').css('color', 'red')
+}
+
+const onClosePasswordPrompt = () => {
+  $('.passwordstatus').text('')
+}
+
+const onCloseLoginPrompt = () => {
+  $('.signinstatus').text('')
+}
+
+const onCloseSignupPrompt = () => {
+  $('.signupstatus').text('')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
-  signInFailure
+  signInFailure,
+  logoutSuccess,
+  logoutFailure,
+  changePasswordFailure,
+  changePasswordSuccess,
+  onClosePasswordPrompt,
+  onCloseLoginPrompt,
+  onCloseSignupPrompt
 }
