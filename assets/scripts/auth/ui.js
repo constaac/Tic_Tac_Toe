@@ -1,4 +1,5 @@
 'use strict'
+const store = require('../store')
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -14,8 +15,10 @@ const signUpFailure = (error) => {
 
 const signInSuccess = (data) => {
   console.log(data)
-  $('.signinstatus').html('Sign-in Successful!')
-  $('.signinstatus').css('color', 'green')
+  $('#loginModal').modal('toggle')
+  $('.hidebutton').css('display', 'none')
+  $('.start-display-none').css('display', 'inline')
+  $('.nav-account').text('Signed in as ' + store.userID)
 }
 
 const signInFailure = (error) => {

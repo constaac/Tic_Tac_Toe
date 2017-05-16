@@ -21,7 +21,8 @@ const signIn = function (data) {
   })
     .then((response) => {
       store.userToken = response.user.token
-      store.userID = response.user.id
+      store.userEmail = response.user.id
+      store.userID = response.user.email
     })
 }
 

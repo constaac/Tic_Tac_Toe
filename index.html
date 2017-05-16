@@ -16,7 +16,7 @@
 <body class="container-fluid">
   <nav class="navbar navbar-default">
     <!-- Login Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
+    <button type="button" class="btn btn-primary btn-lg hidebutton" data-toggle="modal" data-target="#loginModal">
     Login
     </button>
 
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Account Creation button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#accountCreateModal">
+    <button type="button" class="btn btn-primary btn-lg hidebutton" data-toggle="modal" data-target="#accountCreateModal">
     Create an Account
     </button>
 
@@ -98,6 +98,8 @@
         </div>
       </div>
     </div>
+    <button type="button" class="btn btn-primary btn-lg navbar-btn logout-button start-display-none">Logout</button>
+    <p class="navbar-text navbar-right nav-account start-display-none"></p>
   </nav>
 </body>
 
