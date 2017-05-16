@@ -1,0 +1,55 @@
+.temp-modifier {
+  border-left: solid $white 5px;
+  border-right: solid $white 3px;
+  height: 510px;
+  background-color: yellow;
+}
+.temp-modifier2 {
+  background-color: yellow;
+  border: solid $white 3px;
+  height: 75px;
+}
+.temp-modifier3 {
+  height: 170px;
+  font-size: 110px;
+  text-align: center;
+}
+.top-left {
+  border-bottom: solid black 3px;
+  border-right: solid black 3px;
+}
+.top-middle {
+  border-left: solid black 3px;
+  border-bottom: solid black 3px;
+  border-right: solid black 3px;
+}
+.top-right {
+  border-left: solid black 3px;
+  border-bottom: solid black 3px;
+}
+.middle-left {
+  border-top: solid black 3px;
+  border-right: solid black 3px;
+  border-bottom: solid black 3px;
+}
+.middle-middle {
+  border: solid black 3px;
+}
+.middle-right {
+  border-top: solid black 3px;
+  border-left: solid black 3px;
+  border-bottom: solid black 3px;
+}
+.bottom-left {
+  border-top: solid black 3px;
+  border-right: solid black 3px;
+}
+.bottom-middle {
+  border-left: solid black 3px;
+  border-top: solid black 3px;
+  border-right: solid black 3px;
+}
+.bottom-right {
+  border-left: solid black 3px;
+  border-top: solid black 3px;
+}
