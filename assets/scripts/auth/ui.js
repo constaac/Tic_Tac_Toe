@@ -23,6 +23,7 @@ const signInSuccess = (data) => {
   $('.login-status').text('Signed in as ' + store.userEmail)
   $('#welcome-message').css('display', 'none')
   $('#gameboard').css('display', 'block')
+  $('.history-display-container').css('display', 'inline')
   console.log(store.userID)
 }
 
@@ -44,6 +45,9 @@ const logoutSuccess = (data) => {
   $('.gameid-indicator').text('')
   $('.game-history').empty()
   $('.empty-game-history').css('display', 'none')
+  $('.history-display-container').css('display', 'none')
+  $('.history-radios').prop('checked', false)
+  $('#radio1').prop('checked', true)
 }
 
 const logoutFailure = (error) => {

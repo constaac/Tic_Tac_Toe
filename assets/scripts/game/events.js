@@ -10,9 +10,10 @@ const onCreateGame = function () {
 }
 
 const onGameHistory = function () {
-  api.gameHistory()
-  .then(ui.gameHistorySuccess)
-  .catch(ui.gameHistoryFailure)
+  const query = $('input[name="history-query"]:checked').val()
+  api.gameHistory(query)
+    .then(ui.gameHistorySuccess)
+    .catch(ui.gameHistoryFailure)
 }
 
 const addHandlers = () => {
