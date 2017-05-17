@@ -41,6 +41,9 @@ const logoutSuccess = (data) => {
   $('.start-display-none-password').css('display', 'none')
   $('#welcome-message').css('display', 'block')
   $('#gameboard').css('display', 'none')
+  $('.gameid-indicator').text('')
+  $('.game-history').empty()
+  $('.empty-game-history').css('display', 'none')
 }
 
 const logoutFailure = (error) => {

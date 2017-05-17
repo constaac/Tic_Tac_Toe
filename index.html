@@ -163,19 +163,19 @@
           Create Game
         </button>
         <p class="create-error errormessage">Error creating game!</p>
-        <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
+        <button type="button" id="join-game-button" class="btn btn-primary btn-lg left-menu-buttons">
           Join Game
         </button>
         <p class="join-error errormessage">Error joining game!</p>
-        <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
+        <button type="button" id="watch-game-button" class="btn btn-primary btn-lg left-menu-buttons">
           Watch Game
         </button>
         <p class="watch-error errormessage">Error joining game!</p>
-        <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
+        <button type="button" id="load-game-button" class="btn btn-primary btn-lg left-menu-buttons">
           Load Game
         </button>
         <p class="load-error errormessage">Error loading game!</p>
-        <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
+        <button type="button" id="load-game-history-button" class="btn btn-primary btn-lg left-menu-buttons">
           Load History
         </button>
         <p class="load-history-error errormessage">Error loading game history!</p>
@@ -218,9 +218,13 @@
         </div>
       </div>
       <div class="col-xs-3 box temp-modifier">
-        <p class="history-title">Game</p>
-        <ul class="game-history">
-        </ul>
+        <h1 class="history-title">Game History (Scroll)</h1><br>
+        <div class="game-history-container">
+          <ol class="game-history">
+          </ol>
+          <p class="empty-game-history">No Games Found!</p>
+          <p class="empty-game-history">Start a new game</p>
+        </div>
       </div>
     </div>
   </div>

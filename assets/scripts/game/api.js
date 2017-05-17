@@ -13,6 +13,17 @@ const createGame = function () {
   })
 }
 
+const gameHistory = function () {
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games',
+    method: 'GET'
+  })
+}
+
 module.exports = {
-  createGame
+  createGame,
+  gameHistory
 }

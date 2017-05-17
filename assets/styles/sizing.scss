@@ -1,3 +1,7 @@
+.game-history-container {
+  overflow: scroll;
+  height: 450px;
+}
 .temp-modifier {
   border-left: solid $white 5px;
   border-right: solid $white 3px;

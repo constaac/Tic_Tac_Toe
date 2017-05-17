@@ -9,10 +9,11 @@ const onCreateGame = function () {
     .catch(ui.createGameFailure)
 }
 
-// const onTopLeft = function (player) {
-//
-//   // api.topLeft()
-// }
+const onGameHistory = function () {
+  api.gameHistory()
+  .then(ui.gameHistorySuccess)
+  .catch(ui.gameHistoryFailure)
+}
 
 const addHandlers = () => {
   // $('.top-left').on('click', onTopLeft)
@@ -25,6 +26,7 @@ const addHandlers = () => {
   // $('.bottom-middle').on('click', onBottomMiddle)
   // $('.bottom-right').on('click', onBottomRight)
   $('#create-game-button').on('click', onCreateGame)
+  $('#load-game-history-button').on('click', onGameHistory)
 }
 
 module.exports = {

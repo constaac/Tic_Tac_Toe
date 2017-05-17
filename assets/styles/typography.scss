@@ -21,7 +21,17 @@
   color: red;
   visibility: hidden;
 }
-.history
+.history-title {
+  text-decoration: underline;
+  font-size: 20px;
+}
+.empty-game-history {
+  display: none;
+  color: red;
+}
+.game-history {
+  text-align: left;
+}
 #welcome-message {
   text-align: center;
   opacity: .6;
