@@ -21,6 +21,8 @@ const signInSuccess = (data) => {
   $('.start-display-none-logout').css('display', 'inline')
   $('.start-display-none-password').css('display', 'inline')
   $('.login-status').text('Signed in as ' + store.userEmail)
+  $('#welcome-message').css('display', 'none')
+  $('#gameboard').css('display', 'block')
   console.log(store.userID)
 }
 
@@ -33,10 +35,12 @@ const signInFailure = (error) => {
 const logoutSuccess = (data) => {
   console.log(data)
   console.log('Logged that bitch out!')
-  $('.login-status').text('Sign in to play!')
+  $('.login-status').text('')
   $('.hidebutton').css('display', 'inline')
   $('.start-display-none-logout').css('display', 'none')
   $('.start-display-none-password').css('display', 'none')
+  $('#welcome-message').css('display', 'block')
+  $('#gameboard').css('display', 'none')
 }
 
 const logoutFailure = (error) => {

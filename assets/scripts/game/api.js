@@ -1,10 +1,18 @@
 'use strict'
 
-const signUp = function () {
+const config = require('../config.js')
+const store = require('../store')
 
-  // return $.ajax({
-  //   url: config.apiOrigins.development + '/sign-up',
-  //   method: 'POST',
-  //   data
-  // })
+const createGame = function () {
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games',
+    method: 'POST'
+  })
+}
+
+module.exports = {
+  createGame
 }
