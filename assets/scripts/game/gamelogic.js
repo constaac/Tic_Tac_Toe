@@ -15,6 +15,14 @@ const resetCurrentStats = function () {
   currentTurnCounter = 0
 }
 
+const setTurnIndicator = function () {
+  if (currentTurnCounter % 2 === 0) {
+    $('#turn-indicator').text("X's Turn")
+  } else if (currentTurnCounter % 2 === 1) {
+    $('#turn-indicator').text("O's Turn")
+  }
+}
+
 const calcTurn = function (response) {
   let xcounter = 0
   let ocounter = 0
@@ -33,7 +41,7 @@ const calcTurn = function (response) {
   }
 }
 
-const overChecker = function() {
+const overChecker = function () {
   let movesTaken = 0
   currentGame.forEach((element) => {
     if (element !== '') {
@@ -129,6 +137,10 @@ const updateGame = function (response) {
   return response
 }
 
+const winCheck = function () {
+
+}
+
 module.exports = {
   currentGame,
   currentTurn,
@@ -138,5 +150,7 @@ module.exports = {
   overChecker,
   changeSpace,
   resetCurrentStats,
-  calcCurrentTurnCounter
+  calcCurrentTurnCounter,
+  setTurnIndicator,
+  winCheck
 }

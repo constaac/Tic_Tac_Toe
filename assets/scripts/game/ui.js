@@ -35,11 +35,7 @@ const gameHistorySuccess = function (response) {
     }, 2000)
   }
   response.games.forEach(function (element) {
-    if (element.player_o === null) {
-      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li><i>Local Game</i></li></ul></li><br>')
-    } else {
-      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li><i>Online Game</i></li><li>Player X: ' + element.player_x.email + '</li><li>Player O: ' + element.player_o.email + '</li></ul></li><br>')
-    }
+    $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li></ul></li><br>')
   })
 }
 
@@ -56,6 +52,7 @@ const loadGameSuccess = function (response) {
   $('#loadModal').modal('hide')
   gamelogic.resetCurrentStats()
   gamelogic.calcCurrentTurnCounter(response)
+  gamelogic.setTurnIndicator()
   gamelogic.updateGame(response)
   console.log('Created Loaded Game?')
   return response

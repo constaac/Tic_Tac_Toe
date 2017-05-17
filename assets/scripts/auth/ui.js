@@ -18,12 +18,18 @@ const signUpSuccess = (data) => {
   console.log(data)
   $('.signupstatus').html('Account Creation Successful!')
   $('.signupstatus').css('color', 'green')
+  setTimeout(function () {
+    $('.signupstatus').html('')
+  }, 3000)
 }
 
 const signUpFailure = (error) => {
   console.error(error)
   $('.signupstatus').html('Account Creation Unsuccessful... Check that your passwords match!')
   $('.signupstatus').css('color', 'red')
+  setTimeout(function () {
+    $('.signupstatus').html('')
+  }, 3000)
 }
 
 const signInSuccess = (data) => {
@@ -45,6 +51,9 @@ const signInFailure = (error) => {
   console.error(error)
   $('.signinstatus').html('Sign-in Unsuccessful... Check your password!')
   $('.signinstatus').css('color', 'red')
+  setTimeout(function () {
+    $('.signinstatus').html('')
+  }, 3000)
 }
 
 const logoutSuccess = (data) => {
@@ -77,12 +86,18 @@ const changePasswordSuccess = (data) => {
   console.log(data)
   $('.passwordstatus').html('Password Change Successful!')
   $('.passwordstatus').css('color', 'green')
+  setTimeout(function () {
+    $('.passwordstatus').html('')
+  }, 3000)
 }
 
 const changePasswordFailure = (error) => {
   console.error(error)
   $('.passwordstatus').html('Password Change Unsuccessful...')
   $('.passwordstatus').css('color', 'red')
+  setTimeout(function () {
+    $('.passwordstatus').html('')
+  }, 3000)
 }
 
 const onClosePasswordPrompt = () => {
