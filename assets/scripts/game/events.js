@@ -3,8 +3,10 @@
 const api = require('./api')
 const ui = require('./ui')
 const gamelogic = require('./gamelogic')
+const getFormFields = require(`../../../lib/get-form-fields`)
 
 const onCreateGame = function () {
+  gamelogic.resetCurrentStats()
   api.createGame()
     .then(ui.createGameSuccess)
     .then(gamelogic.updateGame)
@@ -46,6 +48,13 @@ const onBottomRight = function () {
   gamelogic.changeSpace(8)
 }
 
+const onLoadGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.startLoadGame(data)
+    .then(ui.loadGameSuccess)
+}
+
 const addHandlers = () => {
   $('.top-left').on('click', onTopLeft)
   $('.top-middle').on('click', onTopMiddle)
@@ -58,6 +67,7 @@ const addHandlers = () => {
   $('.bottom-right').on('click', onBottomRight)
   $('#create-game-button').on('click', onCreateGame)
   $('#load-game-history-button').on('click', onGameHistory)
+  $('#load-form').on('submit', onLoadGame)
 }
 
 module.exports = {

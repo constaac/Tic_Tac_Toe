@@ -148,25 +148,25 @@
       </div>
     </div>
     <div class="history-display-container">
-    <button type="button" id="load-game-history-button" class="btn btn-primary btn-lg nav-account-left inline-this">
+      <button type="button" id="load-game-history-button" class="btn btn-primary btn-lg nav-account-left inline-this">
       Load History
     </button>
-    <form class="history-radios-form inline-this">
-    <input type="radio" class="history-radios" name="history-query" id="radio1" value="0" checked="checked">All Games</input>
-    <input type="radio" class="history-radios" name="history-query" id="radio2" value="1">Finished</input>
-    <input type="radio" class="history-radios" name="history-query" id="radio3" value="2">In Progress</input>
-    </form>
+      <form class="history-radios-form inline-this">
+        <input type="radio" class="history-radios" name="history-query" id="radio1" value="0" checked="checked">All Games</input>
+        <input type="radio" class="history-radios" name="history-query" id="radio2" value="1">Finished</input>
+        <input type="radio" class="history-radios" name="history-query" id="radio3" value="2">In Progress</input>
+      </form>
     </div>
   </nav>
   <h1 id="welcome-message">Sign in to get started!<br><small>Note: X's always go first!</small></h1>
   <div id="gameboard" class="container body-spacing">
     <div class="row">
-      <div class="col-xs-3 box temp-modifier2 player-container">
+      <div class="col-xs-3 box temp-modifier2 centerthis">
         <h1 class="player1"><small><i>Player 1 is "X"</i></small></h1>
       </div>
-      <div class="col-xs-3 box temp-modifier2">left</div>
-      <div class="col-xs-3 box temp-modifier2">right</div>
-      <div class="col-xs-3 box temp-modifier2 player-container">
+      <div class="col-xs-3 box temp-modifier2 centerthis"><h1 id="turn-indicator"></div>
+      <div class="col-xs-3 box temp-modifier2 centerthis"><h1 id="outcome-indicator"><small>This Wins</small></h1></div>
+      <div class="col-xs-3 box temp-modifier2 centerthis">
         <h1 class="player2"><small><i>Player 2 is "O"</i></small></h1>
       </div>
     </div>
@@ -177,18 +177,19 @@
           Create Game
         </button>
         <p class="create-error errormessage">Error creating game!</p>
-        <button type="button" id="join-game-button" class="btn btn-primary btn-lg left-menu-buttons">
-          Join Game
-        </button>
-        <p class="join-error errormessage">Error joining game!</p>
-        <button type="button" id="watch-game-button" class="btn btn-primary btn-lg left-menu-buttons">
-          Watch Game
-        </button>
-        <p class="watch-error errormessage">Error joining game!</p>
-        <button type="button" id="load-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+        <span class="hidethisforfuture">
+          <button type="button" id="join-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+            Join Game
+          </button>
+          <p class="join-error errormessage">Error joining game!</p>
+          <button type="button" id="watch-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+            Watch Game
+          </button>
+          <p class="watch-error errormessage">Error joining game!</p>
+        </span>
+        <button type="button" id="load-game-button" class="nav-account-left btn btn-primary btn-lg left-menu-buttons" data-toggle="modal" data-target="#loadModal">
           Load Game
         </button>
-        <p class="load-error errormessage">Error loading game!</p>
         <p class="load-history-error errormessage">Error loading game history!</p>
         <h1 class="gameid-title">Game ID</h1>
         <h1 class="gameid-indicator"></h1>
@@ -234,6 +235,34 @@
           <ol class="game-history">
           </ol>
           <p class="empty-game-history empty-game-history1">No Games Found!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Game Modal -->
+  <div class="modal fade" id="loadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelLoad">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelLoad">Load A Game From Your History</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="load-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Game ID:</label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" placeholder="Game ID" name="game[id]">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" name="submit" class="btn btn-default">Load</button>
+              </div>
+            </div>
+          </form>
+          <p class="loadstatus"></p>
         </div>
       </div>
     </div>

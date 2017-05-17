@@ -6,11 +6,13 @@ const store = require('../store')
 let currentTurn
 let currentGame = []
 let currentGameID = {}
+let currentTurnCounter = 0
 
 const resetCurrentStats = function () {
   currentTurn = ''
   currentGame = []
   currentGameID = {}
+  currentTurnCounter = 0
 }
 
 const calcTurn = function (response) {
@@ -31,7 +33,7 @@ const calcTurn = function (response) {
   }
 }
 
-const overChecker = function () {
+const overChecker = function() {
   let movesTaken = 0
   currentGame.forEach((element) => {
     if (element !== '') {
@@ -41,6 +43,16 @@ const overChecker = function () {
   if (movesTaken === 8) {
     return 'true'
   }
+}
+
+const calcCurrentTurnCounter = function (data) {
+  let tempCounter = 0
+  data.game.cells.forEach((element) => {
+    if (element !== '') {
+      tempCounter += 1
+    }
+  })
+  currentTurnCounter = tempCounter
 }
 
 const changeSpace = function (cellindex) {
@@ -55,37 +67,49 @@ const changeSpace = function (cellindex) {
     }
     game.cell.index = cellindex
     game.cell.value = currentTurn
-  if (currentTurn === 'x') {
-        api.updateGameAPI(game)
-          .then((response) => {
-            currentGame[cellindex] = 'x'
-            $('#' + cellindex).text('X')
-            console.log('ahhhhhhh ' + currentGame)
-            console.log('api says that as well -> ' + response.game.cells)
-            currentTurn = 'o'
-            return response
-          })
-          .then(updateGame)
-          .then(calcTurn)
-      } else if (currentTurn === 'o') {
-        api.updateGameAPI(game)
+    if (currentTurn === 'x') {
+      api.updateGameAPI(game)
         .then((response) => {
+          currentTurnCounter += 1
+          currentGame[cellindex] = 'x'
+          $('#' + cellindex).text('X')
+          console.log('ahhhhhhh ' + currentGame)
+          console.log('api says that as well -> ' + response.game.cells)
+          currentTurn = 'o'
+          if (currentTurnCounter === 9) {
+            $('#turn-indicator').text('')
+          } else {
+            $('#turn-indicator').text("O's Turn")
+          }
+          return response
+        })
+        .then(updateGame)
+        .then(calcTurn)
+    } else if (currentTurn === 'o') {
+      api.updateGameAPI(game)
+        .then((response) => {
+          currentTurnCounter += 1
           currentGame[cellindex] = 'o'
           $('#' + cellindex).text('O')
           console.log('ahhhhhhh ' + currentGame)
           console.log('api says that as well -> ' + response.game.cells)
           currentTurn = 'x'
+          if (currentTurnCounter === 9) {
+            $('#turn-indicator').text('')
+          } else {
+            $('#turn-indicator').text("X's Turn")
+          }
           return response
         })
-          .then(updateGame)
-          .then(calcTurn)
-      } else {
-        return
-      }
+        .then(updateGame)
+        .then(calcTurn)
     } else {
+      return
+    }
+  } else {
     console.log('not an empty space!')
     return
-    }
+  }
 }
 
 const updateGame = function (response) {
@@ -113,5 +137,6 @@ module.exports = {
   currentGameID,
   overChecker,
   changeSpace,
-  resetCurrentStats
+  resetCurrentStats,
+  calcCurrentTurnCounter
 }

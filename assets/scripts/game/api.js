@@ -42,7 +42,7 @@ const gameHistory = function(x) {
   }
 }
 
-const updateGameAPI = function(gamedata) {
+const updateGameAPI = function (gamedata) {
   console.log(store.currentGameID)
   return $.ajax({
     headers: {
@@ -51,13 +51,26 @@ const updateGameAPI = function(gamedata) {
     url: config.apiOrigins.development + '/games/' + store.currentGameID,
     method: 'PATCH',
     data: {
-      "game": gamedata
+      'game': gamedata
     }
+  })
+}
+
+const startLoadGame = function (data) {
+  console.log('shit is working fine')
+  console.log(data.game.id)
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + data.game.id,
+    method: 'GET'
   })
 }
 
 module.exports = {
   createGame,
   gameHistory,
-  updateGameAPI
+  updateGameAPI,
+  startLoadGame
 }

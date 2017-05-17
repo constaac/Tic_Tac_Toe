@@ -1,6 +1,6 @@
 'use strict'
 
-// const store = require('../store')
+const gamelogic = require('./gamelogic')
 
 const createGameSuccess = function (response) {
   console.log(response)
@@ -10,6 +10,7 @@ const createGameSuccess = function (response) {
   setTimeout(function () {
     $('.create-error').css('visibility', 'hidden')
   }, 2000)
+  $('#turn-indicator').text("X's Turn")
   return response
 }
 
@@ -51,9 +52,24 @@ const gameHistoryFailure = function (response) {
   }, 2000)
 }
 
+const loadGameSuccess = function (response) {
+  $('#loadModal').modal('hide')
+  gamelogic.resetCurrentStats()
+  gamelogic.calcCurrentTurnCounter(response)
+  gamelogic.updateGame(response)
+  console.log('Created Loaded Game?')
+  return response
+}
+
+const loadGameFailure = function (response) {
+
+}
+
 module.exports = {
   createGameSuccess,
   createGameFailure,
   gameHistorySuccess,
-  gameHistoryFailure
+  gameHistoryFailure,
+  loadGameSuccess,
+  loadGameFailure
 }
