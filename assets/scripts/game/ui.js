@@ -33,15 +33,20 @@ const gameHistorySuccess = function (response) {
   }
   response.games.forEach(function (element) {
     if (element.player_o === null) {
-      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li>Single-Player Game</li><li>Player X: ' + element.player_x.email + '</li></ul></li><br>')
+      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li><i>Local Game</i></li></ul></li><br>')
     } else {
-      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li>Multi-Player Game</li><li>Player X: ' + element.player_x.email + '</li><li>Player O: ' + element.player_o.email + '</li></ul></li><br>')
+      $('.game-history').append('<li><ul><li>Game ID: ' + element.id + '</li><li>Game is Over: ' + element.over + '</li><li><i>Online Game</i></li><li>Player X: ' + element.player_x.email + '</li><li>Player O: ' + element.player_o.email + '</li></ul></li><br>')
     }
   })
 }
 
 const gameHistoryFailure = function (response) {
-  console.log(response)
+  $('.empty-game-history1').text('Error Loading Game History!')
+  $('.empty-game-history1').css('display', 'block')
+  setTimeout(function () {
+    $('.empty-game-history1').css('display', 'none')
+    $('.empty-game-history1').text('No Games Found!')
+  }, 2000)
 }
 
 module.exports = {

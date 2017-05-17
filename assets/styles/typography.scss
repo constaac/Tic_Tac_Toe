@@ -32,6 +32,12 @@
 .game-history {
   text-align: left;
 }
+ul {
+  list-style-type: none;
+}
+li {
+  text-indent: -10px;
+}
 #welcome-message {
   text-align: center;
   opacity: .6;
