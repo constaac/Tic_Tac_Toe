@@ -151,64 +151,77 @@
   <h1 id="welcome-message">Sign in to get started!</h1>
   <div id="gameboard" class="container body-spacing">
     <div class="row">
-      <div class="col-xs-3 box temp-modifier2">.col-xs-3</div>
-      <div class="col-xs-3 box temp-modifier2">.col-xs-3</div>
-      <div class="col-xs-3 box temp-modifier2">.col-xs-3</div>
-      <div class="col-xs-3 box temp-modifier2">.col-xs-3</div>
+      <div class="col-xs-3 box temp-modifier2">far left</div>
+      <div class="col-xs-3 box temp-modifier2">left</div>
+      <div class="col-xs-3 box temp-modifier2">right</div>
+      <div class="col-xs-3 box temp-modifier2">far right</div>
     </div>
+    <br>
     <div class="row">
       <div class="col-xs-3 box temp-modifier">
         <button type="button" id="create-game-button" class="btn btn-primary btn-lg left-menu-buttons">
           Create Game
         </button>
+        <p class="create-error errormessage">Error creating game!</p>
         <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
           Join Game
         </button>
+        <p class="join-error errormessage">Error joining game!</p>
         <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
           Watch Game
         </button>
+        <p class="watch-error errormessage">Error joining game!</p>
         <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
           Load Game
         </button>
+        <p class="load-error errormessage">Error loading game!</p>
+        <button type="button" class="btn btn-primary btn-lg left-menu-buttons">
+          Load History
+        </button>
+        <p class="load-history-error errormessage">Error loading game history!</p>
         <h1 class="gameid-title">Game ID</h1>
-        <h1 class="gameid-indicator">10</h1>
+        <h1 class="gameid-indicator"></h1>
       </div>
       <div class="col-xs-6 box">
         <div class="row">
           <div class="col-xs-4 box temp-modifier3 top-left">
-            <p>O</p>
+            <p id="top-left-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 top-middle">
-            <p>X</p>
+            <p id="top-middle-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 top-right">
-            <p>O</p>
+            <p id="top-right-space"></p>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-4 box temp-modifier3 middle-left">
-            <p>X</p>
+            <p id="middle-left-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 middle-middle">
-            <p>O</p>
+            <p id="middle-middle-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 middle-right">
-            <p>X</p>
+            <p id="middle-right-space"></p>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-4 box temp-modifier3 bottom-left">
-            <p>O</p>
+            <p id="bottom-left-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 bottom-middle">
-            <p>X</p>
+            <p id="bottom-middle-space"></p>
           </div>
           <div class="col-xs-4 box temp-modifier3 bottom-right">
-            <p>O</p>
+            <p id="bottom-right-space"></p>
           </div>
         </div>
       </div>
-      <div class="col-xs-3 box temp-modifier">.col-xs-3</div>
+      <div class="col-xs-3 box temp-modifier">
+        <p class="history-title">Game</p>
+        <ul class="game-history">
+        </ul>
+      </div>
     </div>
   </div>
 </body>
