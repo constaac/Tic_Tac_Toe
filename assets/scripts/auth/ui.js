@@ -1,5 +1,18 @@
 'use strict'
 const store = require('../store')
+const gamelogic = require('../game/gamelogic')
+
+const resetGameBoard = function () {
+  $('#0').text('')
+  $('#1').text('')
+  $('#2').text('')
+  $('#3').text('')
+  $('#4').text('')
+  $('#5').text('')
+  $('#6').text('')
+  $('#7').text('')
+  $('#8').text('')
+}
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -24,6 +37,7 @@ const signInSuccess = (data) => {
   $('#welcome-message').css('display', 'none')
   $('#gameboard').css('display', 'block')
   $('.history-display-container').css('display', 'inline')
+  $('.game-note').css('display', 'inline')
   console.log(store.userID)
 }
 
@@ -48,6 +62,9 @@ const logoutSuccess = (data) => {
   $('.history-display-container').css('display', 'none')
   $('.history-radios').prop('checked', false)
   $('#radio1').prop('checked', true)
+  $('.game-note').css('display', 'none')
+  gamelogic.resetCurrentStats()
+  resetGameBoard()
 }
 
 const logoutFailure = (error) => {

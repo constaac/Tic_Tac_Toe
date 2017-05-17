@@ -158,13 +158,17 @@
     </form>
     </div>
   </nav>
-  <h1 id="welcome-message">Sign in to get started!</h1>
+  <h1 id="welcome-message">Sign in to get started!<br><small>Note: X's always go first!</small></h1>
   <div id="gameboard" class="container body-spacing">
     <div class="row">
-      <div class="col-xs-3 box temp-modifier2">far left</div>
+      <div class="col-xs-3 box temp-modifier2 player-container">
+        <h1 class="player1"><small><i>Player 1 is "X"</i></small></h1>
+      </div>
       <div class="col-xs-3 box temp-modifier2">left</div>
       <div class="col-xs-3 box temp-modifier2">right</div>
-      <div class="col-xs-3 box temp-modifier2">far right</div>
+      <div class="col-xs-3 box temp-modifier2 player-container">
+        <h1 class="player2"><small><i>Player 2 is "O"</i></small></h1>
+      </div>
     </div>
     <br>
     <div class="row">
@@ -191,36 +195,36 @@
       </div>
       <div class="col-xs-6 box">
         <div class="row">
-          <div class="col-xs-4 box temp-modifier3 top-left">
-            <p id="top-left-space"></p>
+          <div class="col-xs-4 box temp-modifier3 top-left pointer">
+            <p id='0' class="top-left-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 top-middle">
-            <p id="top-middle-space"></p>
+          <div class="col-xs-4 box temp-modifier3 top-middle pointer">
+            <p id='1' class="top-middle-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 top-right">
-            <p id="top-right-space"></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4 box temp-modifier3 middle-left">
-            <p id="middle-left-space"></p>
-          </div>
-          <div class="col-xs-4 box temp-modifier3 middle-middle">
-            <p id="middle-middle-space"></p>
-          </div>
-          <div class="col-xs-4 box temp-modifier3 middle-right">
-            <p id="middle-right-space"></p>
+          <div class="col-xs-4 box temp-modifier3 top-right pointer">
+            <p id='2' class="top-right-space"></p>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-4 box temp-modifier3 bottom-left">
-            <p id="bottom-left-space"></p>
+          <div class="col-xs-4 box temp-modifier3 middle-left pointer">
+            <p id='3' class="middle-left-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 bottom-middle">
-            <p id="bottom-middle-space"></p>
+          <div class="col-xs-4 box temp-modifier3 middle-middle pointer">
+            <p id='4' class="middle-middle-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 bottom-right">
-            <p id="bottom-right-space"></p>
+          <div class="col-xs-4 box temp-modifier3 middle-right pointer">
+            <p id='5' class="middle-right-space"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 box temp-modifier3 bottom-left pointer">
+            <p id='6' class="bottom-left-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 bottom-middle pointer">
+            <p id='7' class="bottom-middle-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 bottom-right pointer">
+            <p id='8' class="bottom-right-space"></p>
           </div>
         </div>
       </div>
