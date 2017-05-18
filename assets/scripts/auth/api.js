@@ -4,7 +4,6 @@ const config = require('../config.js')
 const store = require('../store')
 
 const signUp = function (data) {
-  console.log('data is ' + data)
   return $.ajax({
     url: config.apiOrigins.production + '/sign-up',
     method: 'POST',
@@ -13,7 +12,6 @@ const signUp = function (data) {
 }
 
 const signIn = function (data) {
-  console.log('data is ' + data)
   return $.ajax({
     url: config.apiOrigins.production + '/sign-in',
     method: 'POST',
@@ -27,7 +25,6 @@ const signIn = function (data) {
 }
 
 const logout = function (data) {
-  console.log('data is ' + data)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -42,7 +39,6 @@ const logout = function (data) {
 }
 
 const changePassword = function (data) {
-  console.log('data is ' + data)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken

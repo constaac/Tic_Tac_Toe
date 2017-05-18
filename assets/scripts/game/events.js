@@ -68,7 +68,6 @@ const onLoadGame = function (event) {
 }
 
 const onFTWR = function () {
-  console.log('Click registered')
   ui.FTWRIn()
 }
 
