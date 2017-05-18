@@ -177,6 +177,10 @@
           Create New Game
         </button>
         <p class="create-error errormessage">Error creating game!</p>
+        <button type="button" id="statistics-button" class="btn btn-primary btn-lg left-menu-buttons">
+          Career Statistics
+        </button>
+        <p class="statistics-error errormessage">Error loading statistics!</p>
         <span class="hidethisforfuture">
           <button type="button" id="join-game-button" class="btn btn-primary btn-lg left-menu-buttons">
             Join Game
@@ -272,6 +276,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Statistics Modal -->
+  <div class="modal fade" id="statistics-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Career Win/Loss/Draw Statistics</h4>
+      </div>
+      <div class="modal-body align-left">
+        <h1 id="totalwins"></h1>
+        <h1 id="xcounter"></h1>
+        <h1 id="ocounter"></h1>
+        <h1 id="dcounter"></h1>
+        <h1 id="wdratio"></h1>
+        <h1 id="xoratio"></h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
