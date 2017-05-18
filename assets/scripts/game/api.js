@@ -9,7 +9,7 @@ const createGame = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games',
+    url: config.apiOrigins.production + '/games',
     method: 'POST'
   })
 }
@@ -20,7 +20,7 @@ const gameHistory = function (x) {
       headers: {
         'Authorization': 'Token token=' + store.userToken
       },
-      url: config.apiOrigins.development + '/games',
+      url: config.apiOrigins.production + '/games',
       method: 'GET'
     })
   } else if (x === '1') {
@@ -28,7 +28,7 @@ const gameHistory = function (x) {
       headers: {
         'Authorization': 'Token token=' + store.userToken
       },
-      url: config.apiOrigins.development + '/games?over=true',
+      url: config.apiOrigins.production + '/games?over=true',
       method: 'GET'
     })
   } else if (x === '2') {
@@ -36,7 +36,7 @@ const gameHistory = function (x) {
       headers: {
         'Authorization': 'Token token=' + store.userToken
       },
-      url: config.apiOrigins.development + '/games?over=false',
+      url: config.apiOrigins.production + '/games?over=false',
       method: 'GET'
     })
   }
@@ -47,7 +47,7 @@ const updateGameAPI = function (gamedata) {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameID,
+    url: config.apiOrigins.production + '/games/' + store.currentGameID,
     method: 'PATCH',
     data: {
       'game': gamedata
@@ -60,7 +60,7 @@ const startLoadGame = function (data) {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + data.game.id,
+    url: config.apiOrigins.production + '/games/' + data.game.id,
     method: 'GET'
   })
 }
