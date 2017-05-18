@@ -110,6 +110,7 @@ const changeSpace = function (cellindex) {
             $('#turn-indicator').text('')
             if (winCheck()) {
               $('#outcome-indicator').text('Winner!')
+              winCheck(true)
             } else {
               $('#outcome-indicator').text('Draw')
             }
@@ -143,6 +144,7 @@ const changeSpace = function (cellindex) {
             $('#turn-indicator').text('')
             if (winCheck()) {
               $('#outcome-indicator').text('Winner!')
+              winCheck(true)
             } else {
               $('#outcome-indicator').text('Draw')
             }
@@ -163,6 +165,18 @@ const changeSpace = function (cellindex) {
   }
 }
 
+const resetBoardColors = function () {
+  $('.top-left-space').css('color', 'black')
+  $('.top-middle-space').css('color', 'black')
+  $('.top-right-space').css('color', 'black')
+  $('.middle-left-space').css('color', 'black')
+  $('.middle-middle-space').css('color', 'black')
+  $('.middle-right-space').css('color', 'black')
+  $('.bottom-left-space').css('color', 'black')
+  $('.bottom-middle-space').css('color', 'black')
+  $('.bottom-right-space').css('color', 'black')
+}
+
 const updateGame = function (response) {
   currentGame = response.game.cells
   store.currentGameID = response.game.id
@@ -181,22 +195,62 @@ const updateGame = function (response) {
   return response
 }
 
-const winCheck = function () {
+const winCheck = function (x) {
   if ((currentGame[0] === currentGame[1]) && (currentGame[1] === currentGame[2] && currentGame[2] !== '')) {
+    if (x) {
+      $('#0').css('color', 'red')
+      $('#1').css('color', 'red')
+      $('#2').css('color', 'red')
+    }
     return true
   } else if ((currentGame[3] === currentGame[4]) && (currentGame[4] === currentGame[5] && currentGame[5] !== '')) {
+    if (x) {
+      $('#3').css('color', 'red')
+      $('#4').css('color', 'red')
+      $('#5').css('color', 'red')
+    }
     return true
   } else if ((currentGame[6] === currentGame[7]) && (currentGame[7] === currentGame[8] && currentGame[8] !== '')) {
+    if (x) {
+      $('#6').css('color', 'red')
+      $('#7').css('color', 'red')
+      $('#8').css('color', 'red')
+    }
     return true
   } else if ((currentGame[0] === currentGame[4]) && (currentGame[4] === currentGame[8] && currentGame[8] !== '')) {
+    if (x) {
+      $('#0').css('color', 'red')
+      $('#4').css('color', 'red')
+      $('#8').css('color', 'red')
+    }
     return true
   } else if ((currentGame[2] === currentGame[4]) && (currentGame[4] === currentGame[6] && currentGame[6] !== '')) {
+    if (x) {
+      $('#2').css('color', 'red')
+      $('#4').css('color', 'red')
+      $('#6').css('color', 'red')
+    }
     return true
   } else if ((currentGame[0] === currentGame[3]) && (currentGame[3] === currentGame[6] && currentGame[6] !== '')) {
+    if (x) {
+      $('#0').css('color', 'red')
+      $('#3').css('color', 'red')
+      $('#6').css('color', 'red')
+    }
     return true
   } else if ((currentGame[1] === currentGame[4]) && (currentGame[4] === currentGame[7] && currentGame[7] !== '')) {
+    if (x) {
+      $('#1').css('color', 'red')
+      $('#4').css('color', 'red')
+      $('#7').css('color', 'red')
+    }
     return true
   } else if ((currentGame[2] === currentGame[5]) && (currentGame[5] === currentGame[8] && currentGame[8] !== '')) {
+    if (x) {
+      $('#2').css('color', 'red')
+      $('#5').css('color', 'red')
+      $('#8').css('color', 'red')
+    }
     return true
   }
 }
@@ -212,5 +266,6 @@ module.exports = {
   resetCurrentStats,
   calcCurrentTurnCounter,
   setTurnIndicator,
-  winCheck
+  winCheck,
+  resetBoardColors
 }

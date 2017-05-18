@@ -11,6 +11,7 @@ const createGameSuccess = function (response) {
   }, 2000)
   $('#turn-indicator').text("X's Turn")
   $('#outcome-indicator').text("")
+  gamelogic.resetBoardColors()
   return response
 }
 
@@ -53,9 +54,11 @@ const loadGameSuccess = function (response) {
   gamelogic.calcCurrentTurnCounter(response)
   gamelogic.setTurnIndicator()
   gamelogic.updateGame(response)
+  gamelogic.resetBoardColors()
   if (gamelogic.winCheck()) {
     $('#outcome-indicator').text('Winner!')
     $('#turn-indicator').text('')
+    gamelogic.winCheck(true)
     return response
   } else if (response.game.over) {
     $('#outcome-indicator').text('Draw')
