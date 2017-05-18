@@ -197,56 +197,56 @@ const updateGame = function (response) {
 
 const winCheck = function (x) {
   if ((currentGame[0] === currentGame[1]) && (currentGame[1] === currentGame[2] && currentGame[2] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#0').css('color', 'red')
       $('#1').css('color', 'red')
       $('#2').css('color', 'red')
     }
     return true
   } else if ((currentGame[3] === currentGame[4]) && (currentGame[4] === currentGame[5] && currentGame[5] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#3').css('color', 'red')
       $('#4').css('color', 'red')
       $('#5').css('color', 'red')
     }
     return true
   } else if ((currentGame[6] === currentGame[7]) && (currentGame[7] === currentGame[8] && currentGame[8] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#6').css('color', 'red')
       $('#7').css('color', 'red')
       $('#8').css('color', 'red')
     }
     return true
   } else if ((currentGame[0] === currentGame[4]) && (currentGame[4] === currentGame[8] && currentGame[8] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#0').css('color', 'red')
       $('#4').css('color', 'red')
       $('#8').css('color', 'red')
     }
     return true
   } else if ((currentGame[2] === currentGame[4]) && (currentGame[4] === currentGame[6] && currentGame[6] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#2').css('color', 'red')
       $('#4').css('color', 'red')
       $('#6').css('color', 'red')
     }
     return true
   } else if ((currentGame[0] === currentGame[3]) && (currentGame[3] === currentGame[6] && currentGame[6] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#0').css('color', 'red')
       $('#3').css('color', 'red')
       $('#6').css('color', 'red')
     }
     return true
   } else if ((currentGame[1] === currentGame[4]) && (currentGame[4] === currentGame[7] && currentGame[7] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#1').css('color', 'red')
       $('#4').css('color', 'red')
       $('#7').css('color', 'red')
     }
     return true
   } else if ((currentGame[2] === currentGame[5]) && (currentGame[5] === currentGame[8] && currentGame[8] !== '')) {
-    if (x) {
+    if (x === true) {
       $('#2').css('color', 'red')
       $('#5').css('color', 'red')
       $('#8').css('color', 'red')

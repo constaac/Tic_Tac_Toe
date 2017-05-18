@@ -20,6 +20,12 @@ const onGameHistory = function () {
     .catch(ui.gameHistoryFailure)
 }
 
+const onStatistics = function () {
+  api.gameStatistics()
+    .then(ui.statisticsSuccess)
+    .catch(ui.statisticsFailure)
+}
+
 const onTopLeft = function () {
   gamelogic.changeSpace(0)
 }
@@ -74,6 +80,7 @@ const addHandlers = () => {
   $('#create-game-button').on('click', onCreateGame)
   $('#load-game-history-button').on('click', onGameHistory)
   $('#load-form').on('submit', onLoadGame)
+  $('#statistics-button').on('click', onStatistics)
 }
 
 module.exports = {

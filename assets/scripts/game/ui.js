@@ -69,8 +69,96 @@ const loadGameSuccess = function (response) {
   }
 }
 
-const loadGameFailure = function (response) {
+const statisticsSuccess = function (response) {
+  let arrayofgames = []
+  arrayofgames = response.games
+  let xcounter = 0
+  let ocounter = 0
+  let dcounter = 0
+  arrayofgames.forEach((response) => {
+    if ((response.cells[0] === response.cells[1]) && (response.cells[1] === response.cells[2] && response.cells[2] !== '')) {
+      if (response.cells[0] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[3] === response.cells[4]) && (response.cells[4] === response.cells[5] && response.cells[5] !== '')) {
+      if (response.cells[3] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[6] === response.cells[7]) && (response.cells[7] === response.cells[8] && response.cells[8] !== '')) {
+      if (response.cells[6] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[0] === response.cells[4]) && (response.cells[4] === response.cells[8] && response.cells[8] !== '')) {
+      if (response.cells[0] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[2] === response.cells[4]) && (response.cells[4] === response.cells[6] && response.cells[6] !== '')) {
+      if (response.cells[2] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[0] === response.cells[3]) && (response.cells[3] === response.cells[6] && response.cells[6] !== '')) {
+      if (response.cells[0] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[1] === response.cells[4]) && (response.cells[4] === response.cells[7] && response.cells[7] !== '')) {
+      if (response.cells[1] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else if ((response.cells[2] === response.cells[5]) && (response.cells[5] === response.cells[8] && response.cells[8] !== '')) {
+      if (response.cells[2] === 'x') {
+        xcounter += 1
+      } else {
+        ocounter += 1
+      }
+    } else {
+      dcounter += 1
+    }
+  })
+  const totalwins = xcounter + ocounter
+  const wdratioraw = (xcounter + ocounter) / dcounter
+  const xoratioraw = xcounter / ocounter
+  let wdratio = wdratioraw.toFixed(2)
+  if (isNaN(wdratio)) {
+    wdratio = 0
+  }
+  let xoratio = xoratioraw.toFixed(2)
+  if (isNaN(xoratio)) {
+    xoratio = 0
+  }
+  if (wdratio == 0) {
+    wdratio = 0
+  }
+  if (xoratio == 0) {
+    wdratio = 0
+  }
+  $('#totalwins').text('Total Wins: ' + totalwins)
+  $('#xcounter').text('"X" Wins: ' + xcounter)
+  $('#ocounter').text('"O" Wins: ' + ocounter)
+  $('#dcounter').text('Draws: ' + dcounter)
+  $('#wdratio').text('Win/Draw Ratio: ' + wdratio)
+  $('#xoratio').text('X/O Win Ratio: ' + xoratio)
+  $('#statistics-modal').modal('show')
+}
 
+const statisticsFailure = function () {
+  $('.statistics-error').css('visibility', 'visible')
+  setTimeout(function () {
+    $('.statistics-error').css('visibility', 'hidden')
+  }, 2000)
 }
 
 module.exports = {
@@ -79,5 +167,6 @@ module.exports = {
   gameHistorySuccess,
   gameHistoryFailure,
   loadGameSuccess,
-  loadGameFailure
+  statisticsSuccess,
+  statisticsFailure
 }

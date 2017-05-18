@@ -42,6 +42,16 @@ const gameHistory = function (x) {
   }
 }
 
+const gameStatistics = function () {
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games?over=true',
+    method: 'GET'
+  })
+}
+
 const updateGameAPI = function (gamedata) {
   return $.ajax({
     headers: {
@@ -69,5 +79,6 @@ module.exports = {
   createGame,
   gameHistory,
   updateGameAPI,
-  startLoadGame
+  startLoadGame,
+  gameStatistics
 }
