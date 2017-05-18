@@ -47,7 +47,7 @@ const gameStatistics = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games?over=true',
+    url: config.apiOrigins.production + '/games?over=true',
     method: 'GET'
   })
 }
