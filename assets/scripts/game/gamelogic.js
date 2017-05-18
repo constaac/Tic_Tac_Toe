@@ -7,12 +7,14 @@ let currentTurn
 let currentGame = []
 let currentGameID = {}
 let currentTurnCounter = 0
+let currentGameState = false
 
 const resetCurrentStats = function () {
   currentTurn = ''
   currentGame = []
   currentGameID = {}
   currentTurnCounter = 0
+  currentGameState = false
 }
 
 const setTurnIndicator = function () {
@@ -48,8 +50,11 @@ const overChecker = function () {
       movesTaken = movesTaken + 1
     }
   })
+  if (winCheck() === true) {
+    return true
+  }
   if (movesTaken === 8) {
-    return 'true'
+    return true
   }
 }
 
@@ -64,11 +69,20 @@ const calcCurrentTurnCounter = function (data) {
 }
 
 const changeSpace = function (cellindex) {
+  const currentCellIndex = cellindex
+  if (currentGameState) {
+    return
+  }
+  if (currentTurn === 'x') {
+    currentGame[cellindex] = 'x'
+  } else if (currentTurn === 'o') {
+    currentGame[cellindex] = 'o'
+  }
   if ($('#' + cellindex).text() === '') {
     const game = {
       cell: {}
     }
-    if (overChecker() === 'true') {
+    if (overChecker()) {
       game.over = true
     } else {
       game.over = false
@@ -81,8 +95,6 @@ const changeSpace = function (cellindex) {
           currentTurnCounter += 1
           currentGame[cellindex] = 'x'
           $('#' + cellindex).text('X')
-          console.log('ahhhhhhh ' + currentGame)
-          console.log('api says that as well -> ' + response.game.cells)
           currentTurn = 'o'
           if (currentTurnCounter === 9) {
             $('#turn-indicator').text('')
@@ -92,15 +104,21 @@ const changeSpace = function (cellindex) {
           return response
         })
         .then(updateGame)
-        .then(calcTurn)
+        .then((response) => {
+          if (response.game.over === true) {
+            currentGameState = true
+            $('#outcome-indicator').text('Winner!')
+          }
+        })
+        .catch(() => {
+          currentGame[currentCellIndex] = ''
+        })
     } else if (currentTurn === 'o') {
       api.updateGameAPI(game)
         .then((response) => {
           currentTurnCounter += 1
           currentGame[cellindex] = 'o'
           $('#' + cellindex).text('O')
-          console.log('ahhhhhhh ' + currentGame)
-          console.log('api says that as well -> ' + response.game.cells)
           currentTurn = 'x'
           if (currentTurnCounter === 9) {
             $('#turn-indicator').text('')
@@ -110,12 +128,19 @@ const changeSpace = function (cellindex) {
           return response
         })
         .then(updateGame)
-        .then(calcTurn)
+        .then((response) => {
+          if (response.game.over === true) {
+            currentGameState = true
+            $('#outcome-indicator').text('Winner!')
+          }
+        })
+        .catch(() => {
+          currentGame[currentCellIndex] = ''
+        })
     } else {
       return
     }
   } else {
-    console.log('not an empty space!')
     return
   }
 }
@@ -134,11 +159,14 @@ const updateGame = function (response) {
   $('.bottom-middle-space').text(response.game.cells[7].toUpperCase())
   $('.bottom-right-space').text(response.game.cells[8].toUpperCase())
   calcTurn(response)
+  currentGameState = response.game.over
   return response
 }
 
 const winCheck = function () {
-
+  if ((currentGame[0] === currentGame[1]) && (currentGame[1] === currentGame[2] && currentGame[2] !== '')) {
+    return true
+  }
 }
 
 module.exports = {

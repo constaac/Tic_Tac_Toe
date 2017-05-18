@@ -3,7 +3,6 @@
 const gamelogic = require('./gamelogic')
 
 const createGameSuccess = function (response) {
-  console.log(response)
   $('.create-error').css('color', 'green')
   $('.create-error').text('Game Created!')
   $('.create-error').css('visibility', 'visible')
@@ -11,11 +10,11 @@ const createGameSuccess = function (response) {
     $('.create-error').css('visibility', 'hidden')
   }, 2000)
   $('#turn-indicator').text("X's Turn")
+  $('#outcome-indicator').text("")
   return response
 }
 
 const createGameFailure = function (response) {
-  console.log(response)
   $('.create-error').css('color', 'red')
   $('.create-error').text('Error creating game!')
   $('.create-error').css('visibility', 'visible')
@@ -25,7 +24,6 @@ const createGameFailure = function (response) {
 }
 
 const gameHistorySuccess = function (response) {
-  console.log(response.games)
   $('.game-history').empty()
   $('.empty-game-history').css('display', 'none')
   if (response.games.length === 0) {
@@ -54,8 +52,15 @@ const loadGameSuccess = function (response) {
   gamelogic.calcCurrentTurnCounter(response)
   gamelogic.setTurnIndicator()
   gamelogic.updateGame(response)
-  console.log('Created Loaded Game?')
-  return response
+  if (gamelogic.winCheck()) {
+    $('#outcome-indicator').text('Winner!')
+    return response
+  } else if (response.game.over) {
+    $('#outcome-indicator').text('Draw')
+    return response
+  } else {
+    return response
+  }
 }
 
 const loadGameFailure = function (response) {

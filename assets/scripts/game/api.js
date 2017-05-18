@@ -4,7 +4,7 @@ const config = require('../config.js')
 const store = require('../store')
 const gamelogic = require('./gamelogic')
 
-const createGame = function() {
+const createGame = function () {
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -14,7 +14,7 @@ const createGame = function() {
   })
 }
 
-const gameHistory = function(x) {
+const gameHistory = function (x) {
   if (x === '0') {
     return $.ajax({
       headers: {
@@ -43,7 +43,6 @@ const gameHistory = function(x) {
 }
 
 const updateGameAPI = function (gamedata) {
-  console.log(store.currentGameID)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -57,8 +56,6 @@ const updateGameAPI = function (gamedata) {
 }
 
 const startLoadGame = function (data) {
-  console.log('shit is working fine')
-  console.log(data.game.id)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
