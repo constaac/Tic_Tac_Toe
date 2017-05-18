@@ -2,7 +2,6 @@
 
 const config = require('../config.js')
 const store = require('../store')
-const gamelogic = require('./gamelogic')
 
 const createGame = function () {
   return $.ajax({

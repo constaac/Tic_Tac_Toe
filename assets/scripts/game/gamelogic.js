@@ -165,31 +165,27 @@ const changeSpace = function (cellindex) {
   }
 }
 
+const changeColor = function (index, color) {
+  $('#' + index).css('color', color)
+}
+
 const resetBoardColors = function () {
-  $('.top-left-space').css('color', 'black')
-  $('.top-middle-space').css('color', 'black')
-  $('.top-right-space').css('color', 'black')
-  $('.middle-left-space').css('color', 'black')
-  $('.middle-middle-space').css('color', 'black')
-  $('.middle-right-space').css('color', 'black')
-  $('.bottom-left-space').css('color', 'black')
-  $('.bottom-middle-space').css('color', 'black')
-  $('.bottom-right-space').css('color', 'black')
+  for (let i = 0; i < 9; i++) {
+    changeColor(i, 'black')
+  }
+}
+
+const setToUpper = function (data) {
+  for (let i = 0; i < 9; i++) {
+    $('#' + i).text(data[i].toUpperCase())
+  }
 }
 
 const updateGame = function (response) {
   currentGame = response.game.cells
   store.currentGameID = response.game.id
   $('.gameid-indicator').text(response.game.id)
-  $('.top-left-space').text(response.game.cells[0].toUpperCase())
-  $('.top-middle-space').text(response.game.cells[1].toUpperCase())
-  $('.top-right-space').text(response.game.cells[2].toUpperCase())
-  $('.middle-left-space').text(response.game.cells[3].toUpperCase())
-  $('.middle-middle-space').text(response.game.cells[4].toUpperCase())
-  $('.middle-right-space').text(response.game.cells[5].toUpperCase())
-  $('.bottom-left-space').text(response.game.cells[6].toUpperCase())
-  $('.bottom-middle-space').text(response.game.cells[7].toUpperCase())
-  $('.bottom-right-space').text(response.game.cells[8].toUpperCase())
+  setToUpper(currentGame)
   calcTurn(response)
   currentGameState = response.game.over
   return response
@@ -198,58 +194,58 @@ const updateGame = function (response) {
 const winCheck = function (x) {
   if ((currentGame[0] === currentGame[1]) && (currentGame[1] === currentGame[2] && currentGame[2] !== '')) {
     if (x === true) {
-      $('#0').css('color', 'red')
-      $('#1').css('color', 'red')
-      $('#2').css('color', 'red')
+      changeColor(0, 'red')
+      changeColor(1, 'red')
+      changeColor(2, 'red')
     }
     return true
   } else if ((currentGame[3] === currentGame[4]) && (currentGame[4] === currentGame[5] && currentGame[5] !== '')) {
     if (x === true) {
-      $('#3').css('color', 'red')
-      $('#4').css('color', 'red')
-      $('#5').css('color', 'red')
+      changeColor(3, 'red')
+      changeColor(4, 'red')
+      changeColor(5, 'red')
     }
     return true
   } else if ((currentGame[6] === currentGame[7]) && (currentGame[7] === currentGame[8] && currentGame[8] !== '')) {
     if (x === true) {
-      $('#6').css('color', 'red')
-      $('#7').css('color', 'red')
-      $('#8').css('color', 'red')
+      changeColor(6, 'red')
+      changeColor(7, 'red')
+      changeColor(8, 'red')
     }
     return true
   } else if ((currentGame[0] === currentGame[4]) && (currentGame[4] === currentGame[8] && currentGame[8] !== '')) {
     if (x === true) {
-      $('#0').css('color', 'red')
-      $('#4').css('color', 'red')
-      $('#8').css('color', 'red')
+      changeColor(0, 'red')
+      changeColor(4, 'red')
+      changeColor(8, 'red')
     }
     return true
   } else if ((currentGame[2] === currentGame[4]) && (currentGame[4] === currentGame[6] && currentGame[6] !== '')) {
     if (x === true) {
-      $('#2').css('color', 'red')
-      $('#4').css('color', 'red')
-      $('#6').css('color', 'red')
+      changeColor(2, 'red')
+      changeColor(4, 'red')
+      changeColor(6, 'red')
     }
     return true
   } else if ((currentGame[0] === currentGame[3]) && (currentGame[3] === currentGame[6] && currentGame[6] !== '')) {
     if (x === true) {
-      $('#0').css('color', 'red')
-      $('#3').css('color', 'red')
-      $('#6').css('color', 'red')
+      changeColor(0, 'red')
+      changeColor(3, 'red')
+      changeColor(6, 'red')
     }
     return true
   } else if ((currentGame[1] === currentGame[4]) && (currentGame[4] === currentGame[7] && currentGame[7] !== '')) {
     if (x === true) {
-      $('#1').css('color', 'red')
-      $('#4').css('color', 'red')
-      $('#7').css('color', 'red')
+      changeColor(1, 'red')
+      changeColor(4, 'red')
+      changeColor(7, 'red')
     }
     return true
   } else if ((currentGame[2] === currentGame[5]) && (currentGame[5] === currentGame[8] && currentGame[8] !== '')) {
     if (x === true) {
-      $('#2').css('color', 'red')
-      $('#5').css('color', 'red')
-      $('#8').css('color', 'red')
+      changeColor(2, 'red')
+      changeColor(5, 'red')
+      changeColor(8, 'red')
     }
     return true
   }

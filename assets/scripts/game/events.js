@@ -67,6 +67,11 @@ const onLoadGame = function (event) {
     })
 }
 
+const onFTWR = function () {
+  console.log('Click registered')
+  ui.FTWRIn()
+}
+
 const addHandlers = () => {
   $('.top-left').on('click', onTopLeft)
   $('.top-middle').on('click', onTopMiddle)
@@ -81,6 +86,7 @@ const addHandlers = () => {
   $('#load-game-history-button').on('click', onGameHistory)
   $('#load-form').on('submit', onLoadGame)
   $('#statistics-button').on('click', onStatistics)
+  $('#FTWR-pic').on('click', onFTWR)
 }
 
 module.exports = {
