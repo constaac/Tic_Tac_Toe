@@ -2,65 +2,85 @@
   overflow: scroll;
   height: 450px;
 }
+
 .temp-modifier {
   border-left: solid $white 5px;
   border-right: solid $white 3px;
   height: 510px;
   text-align: center;
 }
+
 .temp-modifier2 {
   border: solid $white 3px;
   height: 75px;
 }
+
 .temp-modifier3 {
   height: 170px;
   font-size: 110px;
   text-align: center;
 }
+
 .top-left {
   border-bottom: solid black 3px;
   border-right: solid black 3px;
 }
+
 .top-middle {
   border-left: solid black 3px;
   border-bottom: solid black 3px;
   border-right: solid black 3px;
 }
+
 .top-right {
   border-left: solid black 3px;
   border-bottom: solid black 3px;
 }
+
 .middle-left {
   border-top: solid black 3px;
   border-right: solid black 3px;
   border-bottom: solid black 3px;
 }
+
 .middle-middle {
   border: solid black 3px;
 }
+
 .middle-right {
   border-top: solid black 3px;
   border-left: solid black 3px;
   border-bottom: solid black 3px;
 }
+
 .bottom-left {
   border-top: solid black 3px;
   border-right: solid black 3px;
 }
+
 .bottom-middle {
   border-left: solid black 3px;
   border-top: solid black 3px;
   border-right: solid black 3px;
 }
+
 .bottom-right {
   border-left: solid black 3px;
   border-top: solid black 3px;
 }
+
 .footer-errors {
   height: 50px;
   text-align: center;
 }
+
 .white-rabbit {
   height: 28px;
   width: 28px;
 }
+// // .board-container {
+// //   height: 100%
+// // }
+// .box-height {
+//   height: auto;
+// }

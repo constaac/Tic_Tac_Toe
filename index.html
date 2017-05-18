@@ -150,7 +150,7 @@
     <div class="history-display-container">
       <button type="button" id="load-game-history-button" class="btn btn-primary btn-lg nav-account-left inline-this">
       Load History
-    </button>
+    </button><br>
       <form class="history-radios-form inline-this">
         <input type="radio" class="history-radios" name="history-query" id="radio1" value="0" checked="checked">All Games
         <input type="radio" class="history-radios" name="history-query" id="radio2" value="1">Finished
@@ -199,36 +199,36 @@
         <h1 class="gameid-indicator"></h1>
       </div>
       <div class="col-xs-6 box">
-        <div class="row">
-          <div class="col-xs-4 box temp-modifier3 top-left pointer">
+        <div class="row board-container">
+          <div class="col-xs-4 box temp-modifier3 top-left pointer box-height">
             <p id='0' class="top-left-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 top-middle pointer">
+          <div class="col-xs-4 box temp-modifier3 top-middle pointer box-height">
             <p id='1' class="top-middle-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 top-right pointer">
+          <div class="col-xs-4 box temp-modifier3 top-right pointer box-height">
             <p id='2' class="top-right-space"></p>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-4 box temp-modifier3 middle-left pointer">
+          <div class="col-xs-4 box temp-modifier3 middle-left pointer box-height">
             <p id='3' class="middle-left-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 middle-middle pointer">
+          <div class="col-xs-4 box temp-modifier3 middle-middle pointer box-height">
             <p id='4' class="middle-middle-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 middle-right pointer">
+          <div class="col-xs-4 box temp-modifier3 middle-right pointer box-height">
             <p id='5' class="middle-right-space"></p>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-4 box temp-modifier3 bottom-left pointer">
+          <div class="col-xs-4 box temp-modifier3 bottom-left pointer box-height">
             <p id='6' class="bottom-left-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 bottom-middle pointer">
+          <div class="col-xs-4 box temp-modifier3 bottom-middle pointer box-height">
             <p id='7' class="bottom-middle-space"></p>
           </div>
-          <div class="col-xs-4 box temp-modifier3 bottom-right pointer">
+          <div class="col-xs-4 box temp-modifier3 bottom-right pointer box-height">
             <p id='8' class="bottom-right-space"></p>
           </div>
         </div>
@@ -288,11 +288,19 @@
       </div>
       <div class="modal-body align-left">
         <h1 id="totalwins"></h1>
-        <h1 id="xcounter"></h1>
-        <h1 id="ocounter"></h1>
-        <h1 id="dcounter"></h1>
-        <h1 id="wdratio"></h1>
-        <h1 id="xoratio"></h1>
+        <div class="two-statistics">
+          <h1 id="xcounter"></h1>
+          <h1 id="ocounter"></h1>
+          <h1 id="dcounter"></h1>
+        </div>
+        <div class="two-statistics">
+          <h1 id="wdratio"></h1>
+          <h1 id="xoratio"></h1>
+        </div>
+        <div class="two-statistics">
+          <h1 id="overcount"></h1>
+          <h1 id="notovercount"></h1>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
