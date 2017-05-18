@@ -76,7 +76,14 @@ const statisticsSuccess = function (response) {
   let xcounter = 0
   let ocounter = 0
   let dcounter = 0
+  let overcounter = 0
+  let notovercounter = 0
   arrayofgames.forEach((response) => {
+    if (response.over) {
+      overcounter += 1
+    } else {
+      notovercounter += 1
+    }
     if ((response.cells[0] === response.cells[1]) && (response.cells[1] === response.cells[2] && response.cells[2] !== '')) {
       if (response.cells[0] === 'x') {
         xcounter += 1
@@ -148,6 +155,8 @@ const statisticsSuccess = function (response) {
   $('#dcounter').text('Draws: ' + dcounter)
   $('#wdratio').text('Win/Draw Ratio: ' + wdratio)
   $('#xoratio').text('X/O Win Ratio: ' + xoratio)
+  $('#overcount').text('Total Finished Games: ' + overcounter)
+  $('#notovercount').text('Games in Progress: ' + notovercounter)
   $('#statistics-modal').modal('show')
 }
 
