@@ -116,7 +116,11 @@ const changeSpace = function (cellindex) {
           }
         })
         .catch(() => {
+          $('.fatal-errors').text('An error occured')
           currentGame[currentCellIndex] = ''
+          setTimeout(function () {
+            $('.fatal-errors').text('')
+          }, 3000)
         })
     } else if (currentTurn === 'o') {
       api.updateGameAPI(game)
@@ -145,7 +149,11 @@ const changeSpace = function (cellindex) {
           }
         })
         .catch(() => {
+          $('.fatal-errors').text('An error occured')
           currentGame[currentCellIndex] = ''
+          setTimeout(function () {
+            $('.fatal-errors').text('')
+          }, 3000)
         })
     } else {
       return

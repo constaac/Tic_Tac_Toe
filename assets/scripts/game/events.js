@@ -53,6 +53,12 @@ const onLoadGame = function (event) {
   const data = getFormFields(event.target)
   api.startLoadGame(data)
     .then(ui.loadGameSuccess)
+    .catch(() => {
+      $('.fatal-errors').text('An error occured')
+      setTimeout(function () {
+        $('.fatal-errors').text('')
+      }, 3000)
+    })
 }
 
 const addHandlers = () => {
