@@ -10,7 +10,7 @@ const createGameSuccess = function (response) {
     $('.create-error').css('visibility', 'hidden')
   }, 2000)
   $('#turn-indicator').text("X's Turn")
-  $('#outcome-indicator').text("")
+  $('#outcome-indicator').text('')
   gamelogic.resetBoardColors()
   return response
 }
@@ -19,6 +19,7 @@ const createGameFailure = function (response) {
   $('.create-error').css('color', 'red')
   $('.create-error').text('Error creating game!')
   $('.create-error').css('visibility', 'visible')
+  $('#turn-indicator').text('')
   setTimeout(function () {
     $('.create-error').css('visibility', 'hidden')
   }, 2000)
@@ -131,20 +132,16 @@ const statisticsSuccess = function (response) {
   const totalwins = xcounter + ocounter
   const wdratioraw = (xcounter + ocounter) / dcounter
   const xoratioraw = xcounter / ocounter
-  let wdratio = wdratioraw.toFixed(2)
+  let wdratio = wdratioraw
   if (isNaN(wdratio)) {
     wdratio = 0
   }
-  let xoratio = xoratioraw.toFixed(2)
+  let xoratio = xoratioraw
   if (isNaN(xoratio)) {
     xoratio = 0
   }
-  if (wdratio == 0) {
-    wdratio = 0
-  }
-  if (xoratio == 0) {
-    wdratio = 0
-  }
+  wdratio = parseFloat(wdratio.toFixed(2))
+  xoratio = parseFloat(xoratio.toFixed(2))
   $('#totalwins').text('Total Wins: ' + totalwins)
   $('#xcounter').text('"X" Wins: ' + xcounter)
   $('#ocounter').text('"O" Wins: ' + ocounter)
@@ -161,6 +158,10 @@ const statisticsFailure = function () {
   }, 2000)
 }
 
+const FTWRIn = function () {
+  $('#FTWR-modal').modal('show')
+}
+
 module.exports = {
   createGameSuccess,
   createGameFailure,
@@ -168,5 +169,6 @@ module.exports = {
   gameHistoryFailure,
   loadGameSuccess,
   statisticsSuccess,
-  statisticsFailure
+  statisticsFailure,
+  FTWRIn
 }
