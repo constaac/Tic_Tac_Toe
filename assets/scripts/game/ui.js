@@ -48,15 +48,18 @@ const gameHistoryFailure = function (response) {
 
 const loadGameSuccess = function (response) {
   $('#loadModal').modal('hide')
+  $('#outcome-indicator').text('')
   gamelogic.resetCurrentStats()
   gamelogic.calcCurrentTurnCounter(response)
   gamelogic.setTurnIndicator()
   gamelogic.updateGame(response)
   if (gamelogic.winCheck()) {
     $('#outcome-indicator').text('Winner!')
+    $('#turn-indicator').text('')
     return response
   } else if (response.game.over) {
     $('#outcome-indicator').text('Draw')
+    $('#turn-indicator').text('')
     return response
   } else {
     return response

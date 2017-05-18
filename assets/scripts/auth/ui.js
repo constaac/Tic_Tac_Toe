@@ -72,6 +72,7 @@ const logoutSuccess = (data) => {
   $('.history-radios').prop('checked', false)
   $('#radio1').prop('checked', true)
   $('.game-note').css('display', 'none')
+  $('#outcome-indicator').text('')
   gamelogic.resetCurrentStats()
   resetGameBoard()
 }

@@ -53,7 +53,7 @@ const overChecker = function () {
   if (winCheck() === true) {
     return true
   }
-  if (movesTaken === 8) {
+  if (movesTaken === 9) {
     return true
   }
 }
@@ -107,7 +107,12 @@ const changeSpace = function (cellindex) {
         .then((response) => {
           if (response.game.over === true) {
             currentGameState = true
-            $('#outcome-indicator').text('Winner!')
+            $('#turn-indicator').text('')
+            if (winCheck()) {
+              $('#outcome-indicator').text('Winner!')
+            } else {
+              $('#outcome-indicator').text('Draw')
+            }
           }
         })
         .catch(() => {
@@ -131,7 +136,12 @@ const changeSpace = function (cellindex) {
         .then((response) => {
           if (response.game.over === true) {
             currentGameState = true
-            $('#outcome-indicator').text('Winner!')
+            $('#turn-indicator').text('')
+            if (winCheck()) {
+              $('#outcome-indicator').text('Winner!')
+            } else {
+              $('#outcome-indicator').text('Draw')
+            }
           }
         })
         .catch(() => {
@@ -165,6 +175,20 @@ const updateGame = function (response) {
 
 const winCheck = function () {
   if ((currentGame[0] === currentGame[1]) && (currentGame[1] === currentGame[2] && currentGame[2] !== '')) {
+    return true
+  } else if ((currentGame[3] === currentGame[4]) && (currentGame[4] === currentGame[5] && currentGame[5] !== '')) {
+    return true
+  } else if ((currentGame[6] === currentGame[7]) && (currentGame[7] === currentGame[8] && currentGame[8] !== '')) {
+    return true
+  } else if ((currentGame[0] === currentGame[4]) && (currentGame[4] === currentGame[8] && currentGame[8] !== '')) {
+    return true
+  } else if ((currentGame[2] === currentGame[4]) && (currentGame[4] === currentGame[6] && currentGame[6] !== '')) {
+    return true
+  } else if ((currentGame[0] === currentGame[3]) && (currentGame[3] === currentGame[6] && currentGame[6] !== '')) {
+    return true
+  } else if ((currentGame[1] === currentGame[4]) && (currentGame[4] === currentGame[7] && currentGame[7] !== '')) {
+    return true
+  } else if ((currentGame[2] === currentGame[5]) && (currentGame[5] === currentGame[8] && currentGame[8] !== '')) {
     return true
   }
 }
