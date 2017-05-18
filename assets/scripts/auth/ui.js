@@ -15,7 +15,6 @@ const resetGameBoard = function () {
 }
 
 const signUpSuccess = (data) => {
-  console.log(data)
   $('.signupstatus').html('Account Creation Successful!')
   $('.signupstatus').css('color', 'green')
   setTimeout(function () {
@@ -23,8 +22,7 @@ const signUpSuccess = (data) => {
   }, 3000)
 }
 
-const signUpFailure = (error) => {
-  console.error(error)
+const signUpFailure = () => {
   $('.signupstatus').html('Account Creation Unsuccessful... Check that your passwords match!')
   $('.signupstatus').css('color', 'red')
   setTimeout(function () {
@@ -33,7 +31,6 @@ const signUpFailure = (error) => {
 }
 
 const signInSuccess = (data) => {
-  console.log(data)
   $('#loginModal').modal('toggle')
   $('.hidebutton').css('display', 'none')
   $('.start-display-none').css('display', 'inline')
@@ -44,7 +41,6 @@ const signInSuccess = (data) => {
   $('#gameboard').css('display', 'block')
   $('.history-display-container').css('display', 'inline')
   $('.game-note').css('display', 'inline')
-  console.log(store.userID)
 }
 
 const signInFailure = (error) => {
@@ -57,8 +53,6 @@ const signInFailure = (error) => {
 }
 
 const logoutSuccess = (data) => {
-  console.log(data)
-  console.log('Logged that bitch out!')
   $('.login-status').text('')
   $('.hidebutton').css('display', 'inline')
   $('.start-display-none-logout').css('display', 'none')
@@ -77,14 +71,11 @@ const logoutSuccess = (data) => {
   resetGameBoard()
 }
 
-const logoutFailure = (error) => {
-  console.error(error)
-  console.log("Didn't log that bitch out...")
+const logoutFailure = () => {
   $('.login-status').text('Error logging out!')
 }
 
 const changePasswordSuccess = (data) => {
-  console.log(data)
   $('.passwordstatus').html('Password Change Successful!')
   $('.passwordstatus').css('color', 'green')
   setTimeout(function () {
@@ -93,7 +84,6 @@ const changePasswordSuccess = (data) => {
 }
 
 const changePasswordFailure = (error) => {
-  console.error(error)
   $('.passwordstatus').html('Password Change Unsuccessful...')
   $('.passwordstatus').css('color', 'red')
   setTimeout(function () {
