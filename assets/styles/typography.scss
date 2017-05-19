@@ -49,6 +49,10 @@
 .two-statistics {
   border-top: solid 2px black;
 }
+.loadstatus {
+  color: red;
+  visibility: hidden;
+}
 ul {
   list-style-type: none;
 }

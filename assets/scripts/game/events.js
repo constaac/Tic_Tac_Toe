@@ -57,12 +57,21 @@ const onBottomRight = function () {
 const onLoadGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  if (data.game.id === '') {
+    $('.loadstatus').text('Enter a game ID')
+    $('.loadstatus').css('visibility', 'visible')
+    setTimeout(function () {
+      $('.loadstatus').css('visibility', 'hidden')
+      $('.loadstatus').text('An error occured (Make sure the game exists)')
+    }, 3000)
+    return
+  }
   api.startLoadGame(data)
     .then(ui.loadGameSuccess)
     .catch(() => {
-      $('.fatal-errors').text('An error occured')
+      $('.loadstatus').css('visibility', 'visible')
       setTimeout(function () {
-        $('.fatal-errors').text('')
+        $('.loadstatus').css('visibility', 'hidden')
       }, 3000)
     })
 }

@@ -19,6 +19,7 @@ const signUpSuccess = (data) => {
   $('.signupstatus').css('color', 'green')
   setTimeout(function () {
     $('.signupstatus').html('')
+    $('#accountCreateModal').modal('hide')
   }, 3000)
 }
 
