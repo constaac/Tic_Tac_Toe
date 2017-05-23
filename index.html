@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tic-Tac-Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <div class="page-header centerthis">
+    <h1>Tic Tac Toe <small>by Alex Constantine</small></h1>
+  </div>
+  <nav class="navbar navbar-default navbar">
+    <!-- Login Button trigger modal -->
+    <button type="button" class="nav-account-left btn btn-primary btn-lg hidebutton" data-toggle="modal" data-target="#loginModal">
+    Login
+    </button>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSignin">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabelSignin">Login With Your Email <small>(All Case Sensitive)</small></h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="login-form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" placeholder="Email" name="credentials[email]">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" placeholder="Password" name="credentials[password]">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" name="submit" class="btn btn-default">Sign in</button>
+                </div>
+              </div>
+            </form>
+            <p class="signinstatus"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Creation button trigger modal -->
+    <button type="button" class="nav-account-left btn btn-primary btn-lg hidebutton" data-toggle="modal" data-target="#accountCreateModal">
+    Create an Account
+    </button>
+
+    <!-- Account Creation Modal -->
+    <div class="modal fade" id="accountCreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSignup">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabelSignup">Create an Account <small>(All Case Sensitive)</small></h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="signup-form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" placeholder="Email" name="credentials[email]">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" placeholder="Password" name="credentials[password]">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password Confirmation:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" placeholder="Password Again" name="credentials[password_confirmation]">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" name="submit" class="btn btn-default">Create Account</button>
+                </div>
+              </div>
+            </form>
+            <p class="signupstatus"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- logout Button -->
+    <form class="form-horizontal start-display-none-logout nav-account-left" id="logout-form">
+      <button type="submit" name="submit" class="btn btn-primary btn-lg">Logout</button>
+    </form>
+
+    <p class="navbar-text navbar-right login-status nav-account-right start-display-none"></p>
+
+    <!-- Password Change Modal Button -->
+    <button type="button" class="nav-account-left btn btn-primary btn-lg start-display-none-password" data-toggle="modal" data-target="#passwordModal">
+    Change Password
+    </button>
+
+    <!-- Password Change Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPassword">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabelPassword">Change your password <small>(Case Sensitive)</small></h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="password-form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Old Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" placeholder="Old Password" name="[passwords][old]">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">New Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" placeholder="New Password" name="[passwords][new]">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" name="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
+            <p class="passwordstatus"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="history-display-container">
+      <button type="button" id="load-game-history-button" class="btn btn-primary btn-lg nav-account-left inline-this">
+      Load History
+    </button>
+      <form class="history-radios-form inline-this">
+        <input type="radio" class="history-radios" name="history-query" id="radio1" value="0" checked="checked">All Games
+        <input type="radio" class="history-radios" name="history-query" id="radio2" value="1">Finished
+        <input type="radio" class="history-radios" name="history-query" id="radio3" value="2">In Progress
+      </form>
+    </div>
+  </nav>
+  <h1 id="welcome-message">Sign in and "Create a Game" to get started!<br><small>Note: X's always go first!</small></h1>
+  <div id="gameboard" class="container body-spacing">
+    <div class="row">
+      <div class="col-xs-3 box temp-modifier2 centerthis">
+        <h1 class="player1"><small><i>Player 1 is "X"</i></small></h1>
+      </div>
+      <div class="col-xs-3 box temp-modifier2 centerthis"><h1 id="turn-indicator"></h1></div>
+      <div class="col-xs-3 box temp-modifier2 centerthis"><h1 id="outcome-indicator"></h1></div>
+      <div class="col-xs-3 box temp-modifier2 centerthis">
+        <h1 class="player2"><small><i>Player 2 is "O"</i></small></h1>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-md-3 box temp-modifier">
+        <button type="button" id="create-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+          Create New Game
+        </button>
+        <p class="create-error errormessage">Error creating game!</p>
+        <button type="button" id="statistics-button" class="btn btn-primary btn-lg left-menu-buttons">
+          Career Statistics
+        </button>
+        <p class="statistics-error errormessage">Error loading statistics!</p>
+        <span class="hidethisforfuture">
+          <button type="button" id="join-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+            Join Game
+          </button>
+          <p class="join-error errormessage">Error joining game!</p>
+          <button type="button" id="watch-game-button" class="btn btn-primary btn-lg left-menu-buttons">
+            Watch Game
+          </button>
+          <p class="watch-error errormessage">Error joining game!</p>
+        </span>
+        <button type="button" id="load-game-button" class="nav-account-left btn btn-primary btn-lg left-menu-buttons" data-toggle="modal" data-target="#loadModal">
+          Load Game
+        </button>
+        <p class="load-history-error errormessage">Error loading game history!</p>
+        <h1 class="gameid-title">Game ID</h1>
+        <h1 class="gameid-indicator"></h1>
+      </div>
+      <div class="col-xs-12 col-md-6 box">
+        <div class="row board-container">
+          <div class="col-xs-4 box temp-modifier3 top-left pointer box-height div0">
+            <p id='0' class="top-left-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 top-middle pointer box-height div1">
+            <p id='1' class="top-middle-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 top-right pointer box-height div2">
+            <p id='2' class="top-right-space"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 box temp-modifier3 middle-left pointer box-height div3">
+            <p id='3' class="middle-left-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 middle-middle pointer box-height div4">
+            <p id='4' class="middle-middle-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 middle-right pointer box-height div5">
+            <p id='5' class="middle-right-space"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 box temp-modifier3 bottom-left pointer box-height div6">
+            <p id='6' class="bottom-left-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 bottom-middle pointer box-height div7">
+            <p id='7' class="bottom-middle-space"></p>
+          </div>
+          <div class="col-xs-4 box temp-modifier3 bottom-right pointer box-height div8">
+            <p id='8' class="bottom-right-space"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3 box temp-modifier">
+        <h1 class="history-title">Game History (Scroll)</h1><br>
+        <div class="game-history-container">
+          <ol class="game-history">
+          </ol>
+          <p class="empty-game-history empty-game-history1">No Games Found!</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 box footer-errors">
+        <p class="fatal-errors"></p>
+      </div>
+    </div>
+    <img src="http://i.imgur.com/veR43Mh.jpg" alt="FTWR" class="white-rabbit" id="FTWR-pic">
+  </div>
+
+  <!-- Load Game Modal -->
+  <div class="modal fade" id="loadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelLoad">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelLoad">Load A Game From Your History</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="load-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Game ID:</label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" placeholder="Game ID" name="game[id]">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" name="submit" class="btn btn-default">Load</button>
+              </div>
+            </div>
+          </form>
+          <p class="loadstatus">An error occured (Make sure the game exists)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Modal -->
+  <div class="modal fade" id="statistics-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Career Win/Loss/Draw Statistics</h4>
+      </div>
+      <div class="modal-body align-left">
+        <h1 id="totalwins"></h1>
+        <div class="two-statistics">
+          <h1 id="xcounter"></h1>
+          <h1 id="ocounter"></h1>
+          <h1 id="dcounter"></h1>
+        </div>
+        <div class="two-statistics">
+          <h1 id="wdratio"></h1>
+          <h1 id="xoratio"></h1>
+        </div>
+        <div class="two-statistics">
+          <h1 id="overcount"></h1>
+          <h1 id="notovercount"></h1>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FTWR Modal -->
+<div class="modal fade" id="FTWR-modal" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">You've found a glitch in the matrix...</h4>
+    </div>
+    <div class="modal-body">
+      <img src="http://i.imgur.com/0Bi3ekx.gif" alt="Whoah">
+    </div>
+  </div>
+</div>
+</div>
+</body>
+
+</html>
