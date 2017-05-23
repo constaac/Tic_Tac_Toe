@@ -3,6 +3,7 @@
 const api = require('./api')
 const store = require('../store')
 
+// current stats (clientside)
 let currentTurn
 let currentGame = []
 let currentGameID = {}
@@ -25,6 +26,7 @@ const setTurnIndicator = function () {
   }
 }
 
+// turn calculator
 const calcTurn = function (response) {
   let xcounter = 0
   let ocounter = 0
@@ -43,6 +45,7 @@ const calcTurn = function (response) {
   }
 }
 
+// Possibly where the bug lies - globalize movestaken, and reset it on function call
 const overChecker = function () {
   let movesTaken = 0
   currentGame.forEach((element) => {
@@ -68,8 +71,74 @@ const calcCurrentTurnCounter = function (data) {
   currentTurnCounter = tempCounter
 }
 
+const restartOnClicks = function (x) {
+  if (x === 0) {
+    $('.div0').on('click', onTopLeft)
+  } else if (x === 1) {
+    $('.div1').on('click', onTopMiddle)
+  } else if (x === 2) {
+    $('.div2').on('click', onTopRight)
+  } else if (x === 3) {
+    $('.div3').on('click', onMiddleLeft)
+  } else if (x === 4) {
+    $('.div4').on('click', onMiddleMiddle)
+  } else if (x === 5) {
+    $('.div5').on('click', onMiddleRight)
+  } else if (x === 6) {
+    $('.div6').on('click', onBottomLeft)
+  } else if (x === 7) {
+    $('.div7').on('click', onBottomMiddle)
+  } else if (x === 8) {
+    $('.div8').on('click', onBottomRight)
+  } else {
+    return
+  }
+}
+
+const restartAllOnClicks = function (response) {
+  $('.div0').on('click', onTopLeft)
+  $('.div1').on('click', onTopMiddle)
+  $('.div2').on('click', onTopRight)
+  $('.div3').on('click', onMiddleLeft)
+  $('.div4').on('click', onMiddleMiddle)
+  $('.div5').on('click', onMiddleRight)
+  $('.div6').on('click', onBottomLeft)
+  $('.div7').on('click', onBottomMiddle)
+  $('.div8').on('click', onBottomRight)
+  return response
+}
+
+const onTopLeft = function () {
+  changeSpace(0)
+}
+const onTopMiddle = function () {
+  changeSpace(1)
+}
+const onTopRight = function () {
+  changeSpace(2)
+}
+const onMiddleLeft = function () {
+  changeSpace(3)
+}
+const onMiddleMiddle = function () {
+  changeSpace(4)
+}
+const onMiddleRight = function () {
+  changeSpace(5)
+}
+const onBottomLeft = function () {
+  changeSpace(6)
+}
+const onBottomMiddle = function () {
+  changeSpace(7)
+}
+const onBottomRight = function () {
+  changeSpace(8)
+}
+
 const changeSpace = function (cellindex) {
   const currentCellIndex = cellindex
+  $('.div' + cellindex).off('click')
   if (currentGameState) {
     return
   }
@@ -78,7 +147,7 @@ const changeSpace = function (cellindex) {
   } else if (currentTurn === 'o') {
     currentGame[cellindex] = 'o'
   }
-  if ($('#' + cellindex).text() === '') {
+  if (($('#' + cellindex).text() === '') && ($.active === 0)) {
     const game = {
       cell: {}
     }
@@ -111,14 +180,18 @@ const changeSpace = function (cellindex) {
             if (winCheck()) {
               $('#outcome-indicator').text('Winner!')
               winCheck(true)
+            } else if (currentTurn < 9) {
+              return
             } else {
               $('#outcome-indicator').text('Draw')
+              return
             }
           }
         })
         .catch(() => {
           $('.fatal-errors').text('An error occured')
           currentGame[currentCellIndex] = ''
+          restartOnClicks(currentCellIndex)
           setTimeout(function () {
             $('.fatal-errors').text('')
           }, 3000)
@@ -145,14 +218,18 @@ const changeSpace = function (cellindex) {
             if (winCheck()) {
               $('#outcome-indicator').text('Winner!')
               winCheck(true)
+            } else if (currentTurn < 9) {
+              return
             } else {
               $('#outcome-indicator').text('Draw')
+              return
             }
           }
         })
         .catch(() => {
           $('.fatal-errors').text('An error occured')
           currentGame[currentCellIndex] = ''
+          restartOnClicks(currentCellIndex)
           setTimeout(function () {
             $('.fatal-errors').text('')
           }, 3000)
@@ -249,6 +326,7 @@ const winCheck = function (x) {
     }
     return true
   }
+  return false
 }
 
 module.exports = {
@@ -263,5 +341,6 @@ module.exports = {
   calcCurrentTurnCounter,
   setTurnIndicator,
   winCheck,
-  resetBoardColors
+  resetBoardColors,
+  restartAllOnClicks
 }

@@ -10,6 +10,7 @@ const onCreateGame = function () {
   api.createGame()
     .then(ui.createGameSuccess)
     .then(gamelogic.updateGame)
+    .then(gamelogic.restartAllOnClicks)
     .catch(ui.createGameFailure)
 }
 
@@ -68,6 +69,14 @@ const onLoadGame = function (event) {
   }
   api.startLoadGame(data)
     .then(ui.loadGameSuccess)
+    .then(gamelogic.restartAllOnClicks)
+    .then((response) => {
+      for (let i = 0; i < response.game.cells.length; i++) {
+        if (response.game.cells[i] !== '') {
+          $('.div' + i).off('click')
+        }
+      }
+    })
     .catch(() => {
       $('.loadstatus').css('visibility', 'visible')
       setTimeout(function () {
@@ -81,15 +90,15 @@ const onFTWR = function () {
 }
 
 const addHandlers = () => {
-  $('.top-left').on('click', onTopLeft)
-  $('.top-middle').on('click', onTopMiddle)
-  $('.top-right').on('click', onTopRight)
-  $('.middle-left').on('click', onMiddleLeft)
-  $('.middle-middle').on('click', onMiddleMiddle)
-  $('.middle-right').on('click', onMiddleRight)
-  $('.bottom-left').on('click', onBottomLeft)
-  $('.bottom-middle').on('click', onBottomMiddle)
-  $('.bottom-right').on('click', onBottomRight)
+  $('.div0').on('click', onTopLeft)
+  $('.div1').on('click', onTopMiddle)
+  $('.div2').on('click', onTopRight)
+  $('.div3').on('click', onMiddleLeft)
+  $('.div4').on('click', onMiddleMiddle)
+  $('.div5').on('click', onMiddleRight)
+  $('.div6').on('click', onBottomLeft)
+  $('.div7').on('click', onBottomMiddle)
+  $('.div8').on('click', onBottomRight)
   $('#create-game-button').on('click', onCreateGame)
   $('#load-game-history-button').on('click', onGameHistory)
   $('#load-form').on('submit', onLoadGame)
@@ -98,5 +107,14 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onTopLeft,
+  onTopMiddle,
+  onTopRight,
+  onMiddleLeft,
+  onMiddleRight,
+  onMiddleMiddle,
+  onBottomLeft,
+  onBottomMiddle,
+  onBottomRight
 }
